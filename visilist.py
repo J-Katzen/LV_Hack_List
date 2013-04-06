@@ -60,6 +60,7 @@ def add_item(listid):
     return 'update made!'
 
 
+#currently broken and don't know why...
 @authorized()
 @app.route('/list/<ObjectID:listid>/<item_id>')
 def remove_item(listid, item_id):
