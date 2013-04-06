@@ -11,8 +11,7 @@ app = Flask(__name__)
 app.url_map.converters['ObjectID'] = ObjectIDConverter
 
 # mongodb connections
-app.config[
-    'MONGO_URI'] = 'mongodb://heroku_app14582889:s69s9ag2v3qrbe0grhvfoem3mg@ds037387.mongolab.com:37387/heroku_app14582889'
+app.config['MONGO_URI'] = 'mongodb://heroku_app14582889:s69s9ag2v3qrbe0grhvfoem3mg@ds037387.mongolab.com:37387/heroku_app14582889'
 mongo = PyMongo(app, config_prefix='MONGO')
 # functions needed
 
@@ -83,8 +82,8 @@ def user_lists():
 def login():
     error = None
     if request.method == 'POST':
-        user = mongo.db.users.find_one({'email': request.form['email'],
-                                        'password': request.form['password']})
+        user = mongo.db.users.find({'email': request.form['email'],
+                                    'password': request.form['password']})
         if user == None:
             error = 'Invalid username/password'
             return error
