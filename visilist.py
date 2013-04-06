@@ -88,12 +88,11 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        print email
-        print password
         user = mongo.db.users.find_one({'email': email,
                                         'password': password})
         if user == None:
             error = 'Invalid username/password'
+            session.pop('signed_in',None)
         else:
             session['signed_in'] = True
             session['user'] = user
