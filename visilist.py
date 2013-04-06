@@ -64,7 +64,7 @@ def add_item(listid):
 @app.route('/list/<ObjectID:listid>/<item_id>')
 def remove_item(listid, item_id):
     print item_id
-    s_list = mongo.db.users.update({'_id': listid},
+    s_list = mongo.db.lists.update({'_id': listid},
                                    {'$pull': {'items': {'id': item_id}}})
     return 'removal done!'
 
