@@ -10,7 +10,7 @@ def authorized():
     def wrapper(a):
         @wraps(a)
         def wrapped(*args, **kwargs):
-            if session['signed_in'] != True:
+            if 'signed_in' in session:
                 return 'error!'
             return a(*args, **kwargs)
         return wrapped

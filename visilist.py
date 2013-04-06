@@ -43,8 +43,8 @@ def make_list():
     return redirect(url_for('user_lists'))
 
 
-@app.route('/list/<ObjectID:listid>/new_item', methods=['POST'])
 @authorized()
+@app.route('/list/<ObjectID:listid>/new_item', methods=['POST'])
 def add_item(listid):
     new_item = Item()
     print listid
