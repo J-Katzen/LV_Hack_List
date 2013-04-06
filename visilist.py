@@ -69,7 +69,7 @@ def user_lists():
 def login():
     error = None
     if request.method == 'POST':
-        user = mongo.db.users.find_one({'username': request.form['username'],
+        user = mongo.db.users.find_one({'email': request.form['email'],
                                         'password': request.form['password']})
         if user == None:
             error = 'Invalid username/password'
@@ -85,6 +85,20 @@ def login():
 def logout():
     session.pop('signed_in', None)
     return redirect(url_for('login'))
+
+
+@app.route('/register', methods=['POST'])
+def register_user():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        if mongo.db.users.find_one({'email': email}) == None:
+            users = mongo.db.users
+            user_id = users.insert({'email': email, 'password': password})
+            return 'success!'
+        else:
+            return 'fail!'
+
 
 
 @app.route('/')
