@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import session
 from werkzeug.routing import BaseConverter, ValidationError
 from base64 import b64encode, b64decode
 from bson.objectid import ObjectId
