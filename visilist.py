@@ -64,7 +64,7 @@ def add_item(listid):
 @app.route('/list/<ObjectID:listid>/<item_id>')
 def remove_item(listid, item_id):
     s_list = mongo.db.users.update({'_id': listid},
-                                   {'$pull': {'items': item_id}})
+                                   {'$pull': {'items': {'id': item_id}}})
     return 'removal done!'
 
 
@@ -92,7 +92,7 @@ def login():
                                         'password': password})
         if user == None:
             error = 'Invalid username/password'
-            session.pop('signed_in',None)
+            session.pop('signed_in', None)
         else:
             session['signed_in'] = True
             session['user'] = user
