@@ -51,7 +51,7 @@ def add_item(listid):
     new_item.image_url = request.form['type']
     new_item.link = request.form['link']
     new_item.note = request.form['notes']
-    s_list = mongo.db.users.find({'_id': listid})
+    s_list = mongo.db.users.find_one({'_id': listid})
     item_count = s_list.item_count
     new_item.id = item_count
     item_count += 1
