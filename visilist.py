@@ -47,6 +47,7 @@ def make_list():
 @authorized()
 def add_item(listid):
     new_item = Item()
+    print listid
     new_item.name = request.form['name']
     new_item.image_url = request.form['type']
     new_item.link = request.form['link']
