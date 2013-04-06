@@ -1,1 +1,1 @@
-gunicorn -c gunicorn.conf.py visilist:app --debug
+web: gunicorn -c gunicorn.conf.py visilist:app --debug
