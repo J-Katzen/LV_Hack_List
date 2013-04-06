@@ -1,1 +1,1 @@
-web: gunicorn visilist:app
+worker: gunicorn visilist:app
