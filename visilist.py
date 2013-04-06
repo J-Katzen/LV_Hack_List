@@ -11,7 +11,8 @@ app = Flask(__name__)
 app.url_map.converters['ObjectID'] = ObjectIDConverter
 
 # mongodb connections
-app.config['MONGO_URI'] = 'mongodb://heroku_app14582889:s69s9ag2v3qrbe0grhvfoem3mg@ds037387.mongolab.com:37387/heroku_app14582889'
+app.config[
+    'MONGO_URI'] = 'mongodb://heroku_app14582889:s69s9ag2v3qrbe0grhvfoem3mg@ds037387.mongolab.com:37387/heroku_app14582889'
 mongo = PyMongo(app, config_prefix='MONGO')
 # functions needed
 
@@ -27,6 +28,7 @@ def parse_amazon_item():
     descript = soup.find(id="postBodyPS").p.text[:160] + "..."
     obj = {'name': name, 'image_url': image_url, 'desription': descript}
     return json.dumps(obj)
+
 
 @app.route('/new_list', methods=['POST'])
 @authorized()
@@ -123,4 +125,5 @@ def hello_world():
     return 'hello world!'
 
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
