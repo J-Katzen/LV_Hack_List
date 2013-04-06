@@ -55,7 +55,7 @@ def add_item(listid):
     item_count = s_list['item_count']
     new_item.id = item_count
     item_count += 1
-    mongo.db.users.update({'_id': listid}, {'$push': {'items': new_item}})
+    mongo.db.users.update({'_id': listid}, {'$push': {'items': new_item.__dict__}})
     mongo.db.users.update({'_id': listid}, {'$set': {'item_count': item_count}})
     return 'update made!'
 
