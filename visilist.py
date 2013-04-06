@@ -1,12 +1,12 @@
 from flask import Flask, request, session, redirect, render_template, url_for
 from flask.ext.pymongo import PyMongo
 from models import User, List, Item
-from helpers import authorized
+from helpers import authorized, ObjectIDConverter
 import json
 import models
 
 app = Flask(__name__)
-
+app.url_map.converters['ObjectID'] = ObjectIDConverter
 
 # mongodb connections
 app.config[
@@ -27,7 +27,7 @@ def make_list():
     return redirect(url_for('user_lists'))
 
 
-@app.route('/list/<ObjectId:listid>/new_item', methods=['POST'])
+@app.route('/list/<ObjectID:listid>/new_item', methods=['POST'])
 @authorized()
 def add_item(listid):
     new_item = Item()
@@ -91,5 +91,5 @@ def logout():
 def hello_world():
     return 'hello world!'
 
-if visilist == '__main__':
+if __name__ == '__main__':
     app.run()
