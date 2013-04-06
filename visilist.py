@@ -82,9 +82,10 @@ def user_lists():
 def login():
     error = None
     if request.method == 'POST':
-        print request.form
         email = request.form['email']
         password = request.form['password']
+        print email
+        print password
         user = mongo.db.users.find({'email': email,
                                     'password': password})
         if user == None:
