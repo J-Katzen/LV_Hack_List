@@ -87,12 +87,13 @@ def login():
                                         'password': request.form['password']})
         if user == None:
             error = 'Invalid username/password'
+            return error
         else:
             session['signed_in'] = True
             session['user'] = user
     # the code below this is executed if the request method
     # was GET or the credentials were invalid
-    return render_template('login.html', error=error)
+    return 'Success!'
 
 
 @app.route('/logout')
