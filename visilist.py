@@ -83,8 +83,10 @@ def login():
     error = None
     if request.method == 'POST':
         print request.form
-        user = mongo.db.users.find({'email': request.form['email'],
-                                    'password': request.form['password']})
+        email = request.form['email']
+        password = request.form['password']
+        user = mongo.db.users.find({'email': email,
+                                    'password': password})
         if user == None:
             error = 'Invalid username/password'
             return error
