@@ -53,7 +53,7 @@ def add_item(listid):
     new_item.link = request.form['link']
     new_item.note = request.form['notes']
     s_list = mongo.db.users.find_one({'_id': listid})
-    item_count = s_list.item_count
+    item_count = s_list['item_count']
     new_item.id = item_count
     item_count += 1
     mongo.db.users.update({'_id': listid}, {'$push': {'items': new_item}})
