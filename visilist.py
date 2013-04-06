@@ -2,8 +2,10 @@ from flask import Flask, request, session, redirect, render_template, url_for
 from flask.ext.pymongo import PyMongo
 from models import User, List, Item
 from helpers import authorized, ObjectIDConverter
+from bs4 import BeautifulSoup
 import json
 import models
+import urllib2
 
 app = Flask(__name__)
 app.url_map.converters['ObjectID'] = ObjectIDConverter
@@ -14,6 +16,18 @@ app.config[
 mongo = PyMongo(app, config_prefix='MONGO')
 # functions needed
 
+
+@app.route('/product_parse', methods=['POST'])
+@authorized()
+def parse_amazon_item():
+    url = request.form['amazon_url']
+    page = urllib2.urlopen(url).read()
+    soup = BeautifulSoup(page)
+    image_url = soup.find(id="main-image")['src']
+    name = soup.find(id="btAsinTitle").text
+    descript = soup.find(id="postBodyPS").p.text[:160] + "..."
+    obj = {'name': name, 'image_url': image_url, 'desription': descript}
+    return json.dumps(obj)
 
 @app.route('/new_list', methods=['POST'])
 @authorized()
@@ -98,7 +112,6 @@ def register_user():
             return 'success!'
         else:
             return 'fail!'
-
 
 
 @app.route('/')

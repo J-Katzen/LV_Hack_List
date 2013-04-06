@@ -8,6 +8,7 @@ class Item:
         self.image_url = ''
         self.link = ''
         self.note = ''
+        self.description = ''
 
     def __str__(self):
         string = u'\nid_str: ' + repr(self.id_str)
