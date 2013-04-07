@@ -147,6 +147,7 @@ aside{
 	}
 
 #options a{
+	color:#333745;
   -o-transition:1s;
   -ms-transition:1s;
   -moz-transition:1s;
@@ -328,6 +329,7 @@ form#login {
 	margin:5px 0 35px 35px;
 	}
 #options a{
+	color:#333745;
 	text-decoration: none;
   -o-transition:1s;
   -ms-transition:1s;
@@ -363,6 +365,7 @@ form#login {
 
 		}
 	#options a{
+		color:#333745;
 		text-decoration: none;
 		  -o-transition:1s;
 		  -ms-transition:1s;
