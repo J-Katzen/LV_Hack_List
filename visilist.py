@@ -24,9 +24,9 @@ def parse_amazon_item():
     url = request.form['amazon_url']
     page = urllib2.urlopen(url).read()
     soup = BeautifulSoup(page)
-    image_url = soup.find(id="main-image")['src']
-    name = soup.find(id="btAsinTitle").text
-    descript = soup.find(id="postBodyPS").p.text[:160] + "..."
+    image_url = soup.select("#main-image")[0]['src']
+    name = soup.select("#btAsinTitle")[0].text
+    descript = soup.select(".productDescriptionWrapper")[0].text[:160] + "..."
     obj = {'name': name, 'image_url': image_url, 'desription': descript}
     return json.dumps(obj)
 
@@ -123,7 +123,7 @@ def register_user():
 
 @app.route('/')
 def hello_world():
-    return 'hello world!'
+    return render_template('testForms.html')
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
