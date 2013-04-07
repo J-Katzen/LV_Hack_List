@@ -14,7 +14,9 @@
 <body>
 <div id="container">
   <header> <img src="{{ url_for('static', filename='images/logo.png') }}" />
-    <input type="button" id="signout" name="signout" value="SIGN OUT" />
+    <form action="http://lit-ravine-8874.herokuapp.com/logout">
+      <input type="submit" id="signout" name="signout" value="SIGN OUT" />
+    </form>
   </header>
   <aside>
     <div class='tabbed_content'>
