@@ -22,11 +22,11 @@
             	
 		</div>
 
-        {% if clists is defined %}
+        {% if collab_lists is defined %}
         <div class="listies">
             <h1>Listies Shared With Me</h1>
             <ul id="lists">
-                {% for l in clists %}
+                {% for l in collab_lists %}
                 <li><a href="{{l.list_url}}"><img src="{{l.default_image}}" width="150px" height="150px" style="margin-left:0"</a></li>
                 {% endfor %}
             </ul>
