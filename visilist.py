@@ -144,7 +144,7 @@ def register_user():
 def add_collaborator(listid):
     if request.method == 'POST':
         email = request.form['email']
-        mongo.db.lists.update({'_id': list_id}, {'$push': {'collab_emails': email}})
+        mongo.db.lists.update({'_id': listid}, {'$push': {'collab_emails': email}})
         return redirect(url_for('user_lists'))
 
 
