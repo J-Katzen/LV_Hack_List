@@ -14,7 +14,7 @@
 	<div id="listies">
 		<h1>Name of Listie</h1>
         <ul id= "lists">
-            {% for item in one_list %}
+            {% for item in one_list.items %}
             <li><a href="{{item.link}}"><img src="{{item.image_url}}" width="150px" height="150px" style="margin-left:0"></a></li>
             {% endfor %}
         </ul>

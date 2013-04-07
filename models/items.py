@@ -9,6 +9,7 @@ class Item:
         self.link = ''
         self.note = ''
         self.description = ''
+        self.amazon_link = ''
 
     def __str__(self):
         string = u'\nid_str: ' + repr(self.id_str)
