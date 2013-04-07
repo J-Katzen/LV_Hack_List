@@ -18,4 +18,4 @@ class List:
             self.collab_emails = mongobj['collab_emails']
             self.list_url = mongobj['list_url']
             self.item_count = mongobj['item_count']
-            self.owner_email = mongobj['owner']
+            self.owner_email = mongobj['owner_email']

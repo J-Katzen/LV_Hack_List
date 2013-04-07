@@ -1,1 +1,5 @@
-<li>{{list.items}}</li>
+{% for param,value in list.items.iteritems() %}
+<li>
+	{{item.image_url}}
+</li>
+{% endfor %}
