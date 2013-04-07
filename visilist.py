@@ -86,8 +86,8 @@ def remove_item(listid, item_id):
 @app.route('/list/<ObjectID:listid>', methods=['GET'])
 def get_list(listid):
     listy = mongo.db.lists.find_one({'_id': listid})
-    single_list = List(listy)
-    return render_template('entries.html', items=single_list.items, one_list=listy)
+    single_list = List(mongobj=listy)
+    return render_template('entries.html', items=single_list.items, one_list=single_list)
     # return render_template('single_list.html', single_list=single_list)
 
 
@@ -96,6 +96,7 @@ def get_list(listid):
 def user_lists():
     lists = mongo.db.lists.find({'owner_email': session['user']['email']})
     clists = mongo.db.lists.find({'collab_emails': session['user']['email']})
+    print clists
     return render_template('profile.html', username=session['user'], lists=lists, collab_lists=clists)
 
 
