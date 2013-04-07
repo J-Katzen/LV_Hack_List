@@ -1,19 +1,14 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>My Profile</title>
-<link href="style.css" rel="stylesheet" type="text/css">
+{% extends "base.html" %}
+{% block title %}Entries{% endblock %}
 <meta name="viewport" content="width=device-width"> 
 
 </head>
 
 <body>
-
 <div id="container">
     
-		<header>
-        <img src="images/logo.png" />
+        {% block header %}
+        <img src="{{ url_for('static', filename='images/logo.png') }}" />
         
         <input type="button" id="signout" name="signout" value="Sign Out" />
     	</header>

@@ -9,15 +9,17 @@
     
 		{% block header %}
         <img src="{{ url_for('static', filename='images/logo.png') }}" />
-
-        <input type="button" id="signout" name="signout" value="Sign Out" />
+        <FORM METHOD="LINK" ACTION="http://lit-ravine-8874.herokuapp.com/logout">
+        <input type="submit" value="Sign Out" />
+        </FORM>
+        
         {% endblock %}
         {% block content %}
     	<aside id="profile">
         
         	<!--Profile Picture goes here-->
         	<div id="blurb">
-        	<h2>Name Goes Here</h2>
+        	<h2>{{username.fullname}}</h2>
             <p>Blurb about the user</p>
             </div>
     	</aside>
