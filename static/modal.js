@@ -69,12 +69,7 @@
             $(document).ready(function(){
 
                 $('a#howdy').click(function(e){
-                    modal.open({content: '<form action="http://lit-ravine-8874.herokuapp.com/new_list" name="addList" method="POST">
-                        Add List: <br>
-                        Name: <input type="text" name="name"><br>
-                        Type: <input type="text" name="type"><br>
-                        <input type="submit" value="Submit">
-                        </form>'});
+                    modal.open({content: "testing"});
                     e.preventDefault();
                 });
             });
