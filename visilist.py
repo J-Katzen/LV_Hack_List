@@ -95,8 +95,9 @@ def user_lists():
     user = session['user']
     lists = mongo.db.lists.find({'owner_email': user['email']})
     for l in lists:
-        for item in l.items:
-            print item
+        if len(l.items) > 0:
+            for item in l.items:
+                print item
 
     return render_template('entries.html', lists=lists)
 
