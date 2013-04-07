@@ -54,7 +54,7 @@
             e.preventDefault();
             $('#amazonlink').blur(function () {
                 var dat = $(this).value;
-                alert(dat);
+                alert($(this).value)
                 $.post({
                    url: "http://lit-ravine-8874.herokuapp.com/product_parse",
                    data: {"amazon_url": $(this).value },
