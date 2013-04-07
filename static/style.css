@@ -313,6 +313,7 @@ form#login {
 	clear:left;
 	float:left;
 	margin:5px 0 35px 35px;
+	text-decoration: none;
 	}
 
 #listies{
