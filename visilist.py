@@ -28,7 +28,7 @@ def parse_amazon_item():
     image_url = soup.select("#main-image")[0]['src']
     name = soup.select("#btAsinTitle")[0].text
     descript = soup.select(".productDescriptionWrapper")[0].text[:160] + "..."
-    obj = {'name': name, 'image_url': image_url, 'desription': descript}
+    obj = {'name': name, 'image_url': image_url, 'description': descript}
     return json.dumps(obj)
 
 
