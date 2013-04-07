@@ -36,13 +36,13 @@
     // Wait until the DOM has loaded before querying the document
     $(document).ready(function(){
         var text = '<form action="{{one_list.list_url}}/new_item" name="addItem" method="POST">\
-                    <h3>Add Item</h3><br>\
+                    Add Item<br>\
                     Amazon Link: <input type="text" name="link" id="link"><br>\
                     Name: <input type="text" name="name"><br>\
                     Notes: <input type="text" name="notes"><br>\
                     <div id="submitList"><input type="submit" value="Submit"></div>\
                     </form>';
-                    
+
         var collaborate = '<form action="{{one_list.list_url}}/collaborate" name="addcollaborator" method="POST">\
                     Collaborator Email: <input type="text" name="email" id="email"><br>\
                     <div id="submitList"><input type="submit" value="Submit"></div>\
