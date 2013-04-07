@@ -7,20 +7,10 @@
     
     	<!--Profile Picture goes here-->
     	<div id="blurb">
-    	<h2>Name Goes Here</h2>
+    	<h2>{{username.fullname}}</h2>
         <p>Blurb about the user</p>
         </div>
 	</aside>
-
-	<div id="listies">
-		<h1>My Listies</h1>
-        <ul id= "lists">
-            {% for list in lists %}
-            <li><a href="{{list.list_url}}"><img src="{{list.default_image}}" width="150px" height="150px" style="margin-left:0"></a></li>
-            {% endfor %}
-        </ul>
-        	
-	</div>
     
     <div id="options">
         <a id="howdy" href="#"><h2>New Listie</h2></a>
