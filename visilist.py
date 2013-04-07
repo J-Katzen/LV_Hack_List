@@ -1,11 +1,10 @@
 from flask import Flask, request, session, redirect, render_template, url_for
 from flask.ext.pymongo import PyMongo
 from models import User, List, Item
-from helpers import authorized, ObjectIDConverter
+from helpers import authorized, ObjectIDConverter, forced_parse
 from bs4 import BeautifulSoup
 from base64 import b64encode
 import json
-import models
 import urllib2
 
 app = Flask(__name__)
@@ -60,7 +59,7 @@ def rem_list(listid):
 @authorized
 def add_item(listid):
     new_item = Item()
-    dit = forced_prase(request.form['link'])
+    dit = forced_parse(request.form['link'])
     new_item.name = request.form['name']
     new_item.image_url = dit['image_url']
     new_item.amazon_link = request.form['link']
@@ -75,17 +74,6 @@ def add_item(listid):
     mongo.db.lists.update({'_id': listid}, {'$push': {'items': new_item.__dict__}})
     mongo.db.lists.update({'_id': listid}, {'$set': {'item_count': item_count}})
     return redirect(url_for('get_list', listid=listid))
-
-
-def forced_parse(url):
-    url = request.form['amazon_url']
-    page = urllib2.urlopen(url).read()
-    soup = BeautifulSoup(page)
-    image_url = soup.select("#main-image")[0]['src']
-    name = soup.select("#btAsinTitle")[0].text
-    descript = soup.select(".productDescriptionWrapper")[0].text[:160] + "..."
-    obj = {'name': name, 'image_url': image_url, 'description': descript}
-    return obj
 
 
 # currently broken and don't know why...
