@@ -77,7 +77,7 @@ def get_list(listid):
     wrapped_list = List(single_list)
     print single_list
     print wrapped_list
-    return json.dumps(wrapped_list)
+    return json.dumps(wrapped_list.__dict__)
     #return render_template('single_list.html', single_list=single_list)
 
 
