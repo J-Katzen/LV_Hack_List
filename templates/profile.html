@@ -21,6 +21,17 @@
             </ul>
             	
 		</div>
+
+        {% if clists %}
+        <div id="listies">
+            <h1>Listies Shared With Me</h1>
+            <ul id="lists">
+                {% for l in clists %}
+                <li><a href="{{l.list_url}}"><img src="{{l.default_image}}" width="150px" height="150px" style="margin-left:0"</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
         
         <div id="options">
             <a id="newlistie" href="#"><h2>New Listie</h2></a>
