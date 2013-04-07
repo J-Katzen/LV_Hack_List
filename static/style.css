@@ -324,7 +324,7 @@ form#login {
 	}
 
 #about img{
-	margin:auto;
+	width:100%;
 }
 	
 #options{
@@ -440,4 +440,7 @@ form#login {
 #submitList{
 	margin-top:15px;
 	margin-left:120px;
+}
+.tabs{
+	margin-top: 50px;
 }
