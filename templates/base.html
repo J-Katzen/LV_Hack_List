@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>{% block title %}{% endblock %}</title>
+<link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+{% block css %}
+{% endblock %}
+
+<meta name="viewport" content="width=device-width">
+</head>
+<header>{% block header %} {% endblock %}</header>
+<body>
+<div id="container">
+{% block content %}{% endblock %}
+{% block javascript %}{% endblock %}
+<footer>
+{% block footer %}{% endblock %}
+</footer>
+</div>
+</body>
+</html>

@@ -1,21 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Welcome to Listie!</title>
-<link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+{% extends "base.html" %}
+{% block title %}Welcome to Listie!{% endblock %}
 <!--tab script-->
-<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js'></script>
-<script src="{{ url_for('static', filename='tabbedContent.js') }}" type="text/javascript"></script>
-<!--end tab script-->
-<meta name="viewport" content="width=device-width">
-</head>
 
-<body>
-<div id="container">
-  <header> <img src="{{ url_for('static', filename='images/logo.png') }}" />
+<!--end tab script-->
+  {% block header %} <img src="{{ url_for('static', filename='images/logo.png') }}" />
     <a href="http://lit-ravine-8874.herokuapp.com/logout"><input type="button" id="signout" name="signout" value="SIGN OUT" /></a>
-  </header>
+  {% endblock %}
+  {% block content %}
   <aside>
     <div class='tabbed_content'>
       <div class='tabs'>
@@ -55,7 +46,9 @@
     <h1>About</h1>
     <p>Deserunt vinyl labore minim, truffaut typewriter selvage disrupt cred duis commodo. Disrupt helvetica deep v, est blue bottle PBR pour-over banksy laboris twee velit. American apparel cupidatat 90's dolor next level. Pour-over tattooed umami echo park neutra tonx. Lomo before they sold out voluptate, occaecat velit literally eu ennui disrupt est biodiesel. Cardigan fanny pack banh mi vero adipisicing brunch. Deep v adipisicing fingerstache church-key single-origin coffee incididunt magna truffaut.</p>
   </div>
-  <footer> </footer>
-</div>
-</body>
-</html>
+  {% endblock %}
+  {% block javascript %}
+  <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js'></script>
+  <script src="{{ url_for('static', filename='tabbedContent.js') }}" type="text/javascript"></script>
+  {% endblock %}
+
