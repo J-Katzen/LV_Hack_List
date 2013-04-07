@@ -100,6 +100,7 @@ def user_lists():
         print l
 
         if len(l.items) > 0:
+            pass
         #    for item, value in l.items.iteritems():
         #        print item, value
 
