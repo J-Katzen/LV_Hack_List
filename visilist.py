@@ -72,7 +72,7 @@ def add_item(listid):
     item_count += 1
     mongo.db.lists.update({'_id': listid}, {'$push': {'items': new_item.__dict__}})
     mongo.db.lists.update({'_id': listid}, {'$set': {'item_count': item_count}})
-    return redirect(url_for('get_list'))
+    return redirect(url_for('get_list', listid=listid))
 
 
 # currently broken and don't know why...
