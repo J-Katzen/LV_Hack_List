@@ -94,10 +94,9 @@ def get_list(listid):
 @app.route('/user/lists')
 @authorized
 def user_lists():
-    user = session['user']
     lists = mongo.db.lists.find({'owner_email': user['email']})
     clists = mongo.db.lists.find({'collab_emails': user['email']})
-    return render_template('profile.html', {lists: lists, username: session['user'], collab_lists: clists})
+    return render_template('profile.html', {username: session['user'], lists: lists, collab_lists: clists})
 
 
 @app.route('/login', methods=['GET', 'POST'])
