@@ -146,12 +146,12 @@ aside{
 	width:250px;
 }
 
-#listies{
+.listies{
 	margin-top:20px;
 	margin-bottom:20px;
 }
 
-#listies ul#lists li{
+.listies ul#lists li{
 	width:150px;
 	height:150px;
 	margin:15px 10px 0 0;
@@ -318,7 +318,7 @@ form#login {
 	text-decoration: none;
 }
 
-#listies{
+.listies{
 	width:60%;
 	float:right;
 }
@@ -340,7 +340,7 @@ form#login {
 		margin:5px 0 35px 35px;
 		}
 
-	#listies{
+	.listies{
 		width:90%;
 		float:right;
 	}
@@ -395,3 +395,7 @@ form#login {
     top:-7px;
     right:-7px;
 	}
+#submitlist{
+	margin-top:15px;
+	margin-left:120px;
+}
