@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Entries</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width"> 
+
+</head>
+
+<body>
+<div id="container">
+    
+		<header>
+        <img src="images/logo.png" />
+        
+        <input type="button" id="signout" name="signout" value="Sign Out" />
+    	</header>
+    
+    	<aside id="profile">
+        
+        	<!--Profile Picture goes here-->
+        	<div id="blurb">
+        	<h2>Name Goes Here</h2>
+            <p>Blurb about the user</p>
+            </div>
+    	</aside>
+    
+    	<div id="listies">
+    		<h1>Name of Listie</h1>
+            <ul id= "lists">
+                {% for list in lists %}
+                <li>{{list}}</li>
+                {% endfor %}
+            	<!--<li>entrie</li>
+                <li>entrie</li>
+                <li>entrie</li>
+                <li>entrie</li>
+                <li>entrie</li>
+                <li>entrie</li>
+                <li>entrie</li>
+                <li>entrie</li>
+                <li>entrie</li>-->
+            </ul>
+            	
+		</div>
+        
+        <div id="options">
+            <h2>New Listie</h2>
+            <h2>Edit a Listie</h2>
+            <h2>Delete a Listie</h2>
+            </div>
+            
+        <footer>
+        </footer>
+        
+	</div>
+</body>
+</html>
