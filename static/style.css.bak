@@ -358,8 +358,7 @@ form#login {
 }
 #modal {
     position:absolute;
-    background:rgba(212,211,77,0.5);
-	/*background:#D4D34D;*/
+    background:rgba(0,0,0,0.2);
     border-radius:14px;
     padding:8px;
 }
@@ -368,18 +367,7 @@ form#login {
     border-radius:8px;
     background:#fff;
     padding:20px;
-	font-family: 'cubanoregular';
-	font-size:20px;
-	color:#36B1BF;
-	}
-	
-#content form input{
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	font-family: 'cabinregular';
-	font-size:13px;
-	}
-
+}
 #close {
     position:absolute;
     background:url(images/close.png) 0 0 no-repeat;
@@ -389,4 +377,4 @@ form#login {
     text-indent:-9999px;
     top:-7px;
     right:-7px;
-	}
+}
