@@ -134,9 +134,9 @@ def register_user():
         if mongo.db.users.find_one({'email': email}) == None:
             users = mongo.db.users
             user_id = users.insert({'email': email, 'password': password, 'fullname': name})
-            return redirect(url_for('hello_world'), status='Success')
+            return redirect(url_for('hello_world'))
         else:
-            return redirect(url_for('hello_world'), status='Error')
+            return redirect(url_for('hello_world'))
 
 
 @app.route('/')
