@@ -42,14 +42,15 @@ def make_list():
     new_list.owner_email = session['user']['email']
     lists = mongo.db.lists
     list_id = lists.insert(new_list.__dict__)
-    url = 'http://lit-ravine-8874.herokuapp.com/list/' + list_id.__str__()
+    encoded = b64encode(list_id.__str__())
+    url = 'http://lit-ravine-8874.herokuapp.com/list/' + encoded
     mongo.db.lists.update({'_id': list_id}, {'$set': {'list_url': url}})
     return redirect(url_for('user_lists'))
 
 
 @authorized()
 @app.route('/list/<ObjectID:listid>/remove')
-def rem_list():
+def rem_list(listid):
     success = mongo.db.lists.remove({'_id': listid})
     return success
 
