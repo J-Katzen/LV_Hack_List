@@ -326,7 +326,13 @@ form#login {
 	}
 #options a{
 	text-decoration: none;
+	transition: color 1s;
+	-webkit-transition: color 1s;
+	-moz-transition: color 1s;
 }
+#options a:hover{
+	color:#f2594b;
+	}
 
 .listies{
 	width:60%;
@@ -348,7 +354,17 @@ form#login {
 	
 	#options{
 		margin:5px 0 35px 35px;
+
 		}
+	#options a{
+		text-decoration: none;
+		transition: color 1s;
+		-webkit-transition: color 1s;
+		-moz-transition: color 1s;
+	}
+#options a:hover{
+	color:#f2594b;
+}
 
 	.listies{
 		width:90%;
