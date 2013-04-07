@@ -2,23 +2,15 @@
 {% block title %}Entries{% endblock %}
 <meta name="viewport" content="width=device-width"> 
 
-</head>
-
-<body>
-<div id="container">
+    {% block content %}
+	<aside id="profile">
     
-		{% block header %}
-        
-        {% endblock %}
-        {% block content %}
-    	<aside id="profile">
-        
-        	<!--Profile Picture goes here-->
-        	<div id="blurb">
-        	<h2>{{username.fullname}}</h2>
-            <p>Blurb about the user</p>
-            </div>
-    	</aside>
+    	<!--Profile Picture goes here-->
+    	<div id="blurb">
+    	<h2>{{username.fullname}}</h2>
+        <p>Blurb about the user</p>
+        </div>
+	</aside>
     
     	<div id="listies">
     		<h1>My Listies</h1>
@@ -44,4 +36,5 @@
         <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
         <script src="{{ url_for('static', filename='modal.js') }}" type="text/javascript"></script>
         {% endblock %}    
+
 
