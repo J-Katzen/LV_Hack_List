@@ -29,7 +29,7 @@ def parse_amazon_item():
     name = soup.select("#btAsinTitle")[0].text
     descript = soup.select(".productDescriptionWrapper")[0].text[:160] + "..."
     obj = {'name': name, 'image_url': image_url, 'desription': descript}
-    return json.dumps(obj)
+    return json.dumps(obj.__dict__)
 
 
 @app.route('/new_list', methods=['POST'])
