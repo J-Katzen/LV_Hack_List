@@ -62,10 +62,10 @@ def add_item(listid):
     dit = parse_amz(request.form['link'])
     print dit
     new_item.name = request.form['name']
-    #new_item.image_url = dit['image_url']
+    new_item.image_url = dit['image_url']
     new_item.amazon_link = request.form['link']
     new_item.note = request.form['notes']
-    #new_item.description = dit['description']
+    new_item.description = dit['description']
     s_list = mongo.db.lists.find_one({'_id': listid})
     item_count = s_list['item_count']
     new_item.id = item_count

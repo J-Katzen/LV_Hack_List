@@ -19,7 +19,6 @@ def authorized(f):
 
 
 def parse_amz(url):
-    url = request.form['amazon_url']
     page = urllib2.urlopen(url).read()
     soup = BeautifulSoup(page)
     image_url = soup.select("#main-image")[0]['src']
