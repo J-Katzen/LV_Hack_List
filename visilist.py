@@ -1,7 +1,7 @@
 from flask import Flask, request, session, redirect, render_template, url_for
 from flask.ext.pymongo import PyMongo
 from models import User, List, Item
-from helpers import authorized, ObjectIDConverter, forced_parse
+from helpers import authorized, ObjectIDConverter, parse_amz
 from bs4 import BeautifulSoup
 from base64 import b64encode
 import json
@@ -60,7 +60,7 @@ def rem_list(listid):
 def add_item(listid):
     print 'are you there?'
     new_item = Item()
-    dit = forced_parse(request.form['link'])
+    dit = parse_amz(request.form['link'])
     print dit + "?!?!??!"
     new_item.name = request.form['name']
     new_item.image_url = request.form['image_url']
