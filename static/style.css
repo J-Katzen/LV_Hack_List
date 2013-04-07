@@ -373,7 +373,7 @@ form#login {
 	color:#36B1BF;
 	}
 	
-#content form input{
+#content input{
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	font-family: 'cabinregular';
