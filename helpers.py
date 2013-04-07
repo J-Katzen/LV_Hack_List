@@ -6,15 +6,14 @@ from bson.errors import InvalidId
 from functools import wraps
 
 
-def authorized():
-    def wrapper(a):
-        @wraps(a)
-        def wrapped(*args, **kwargs):
-            if 'signed_in' in session:
-                return 'error!'
-            return a(*args, **kwargs)
-        return wrapped
-    return wrapper
+def authorized(f):
+    @wraps(f)
+    def wrapped(*args, **kwargs):
+        if 'signed_in' not in session:
+            return 'Not signed in!'
+        return a(*args, **kwargs)
+    return wrapped
+return wrapper
 
 
 class ObjectIDConverter(BaseConverter):

@@ -19,8 +19,8 @@ mongo = PyMongo(app, config_prefix='MONGO')
 # functions needed
 
 
-@authorized()
 @app.route('/product_parse', methods=['POST'])
+@authorized
 def parse_amazon_item():
     url = request.form['amazon_url']
     page = urllib2.urlopen(url).read()
@@ -32,8 +32,8 @@ def parse_amazon_item():
     return json.dumps(obj)
 
 
-@authorized()
 @app.route('/new_list', methods=['POST'])
+@authorized()
 def make_list():
     new_list = List()
     new_list.name = request.form['name']
@@ -48,16 +48,16 @@ def make_list():
     return redirect(url_for('user_lists'))
 
 
-@authorized()
 @app.route('/list/<ObjectID:listid>/remove')
+@authorized
 def rem_list(listid):
     print listid
     success = mongo.db.lists.remove({'_id': listid})
     return success
 
 
-@authorized()
 @app.route('/list/<ObjectID:listid>/new_item', methods=['POST'])
+@authorized
 def add_item(listid):
     new_item = Item()
     new_item.name = request.form['name']
@@ -76,8 +76,8 @@ def add_item(listid):
 
 
 # currently broken and don't know why...
-@authorized()
 @app.route('/list/<ObjectID:listid>/<item_id>')
+@authorized
 def remove_item(listid, item_id):
     mongo.db.lists.update({'_id': listid}, {'$pull': {'items': {'id': item_id}}})
     return 'removal done!'
@@ -91,8 +91,8 @@ def get_list(listid):
     # return render_template('single_list.html', single_list=single_list)
 
 
-@authorized()
 @app.route('/user/lists')
+@authorized
 def user_lists():
     user = session['user']
     lists = mongo.db.lists.find({'owner_email': user['email']})
