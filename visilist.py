@@ -96,7 +96,7 @@ def get_list(listid):
 def user_lists():
     lists = mongo.db.lists.find({'owner_email': session['user']['email']})
     clists = mongo.db.lists.find({'collab_emails': session['user']['email']})
-    print clists
+    print clists[0]
     return render_template('profile.html', username=session['user'], lists=lists, collab_lists=clists)
 
 
