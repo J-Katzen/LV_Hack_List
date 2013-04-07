@@ -11,7 +11,7 @@ class List:
             self.list_url = ''
             self.item_count = 0
             self.owner_email = owner_email
-            self.default_image = ''
+            self.default_image = 'http://images.wikia.com/youtube/images/e/e8/Skull_-_LOGO_300x300.gif'
         else:
             self.name = mongobj['name']
             self.type = mongobj['type']
