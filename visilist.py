@@ -76,6 +76,7 @@ def add_item(listid):
     mongo.db.lists.update({'_id': listid}, {'$set': {'item_count': item_count}})
     return redirect(url_for('get_list', listid=listid))
 
+
 def forced_parse(url):
     url = request.form['amazon_url']
     page = urllib2.urlopen(url).read()
