@@ -368,12 +368,12 @@ form#login {
     border-radius:8px;
     background:#fff;
     padding:20px;
+    font-family: 'cubanoregular';
+	font-size:20px;
 	color:#36B1BF;
 	}
 
 #content h3{
-	font-family: 'cubanoregular';
-	font-size:20px;
 	padding-bottom: 10px;
 }
 	
