@@ -33,7 +33,7 @@
     		<h1>Name of Listie</h1>
             <ul id= "lists">
                 {% for list in lists %}
-                <li><img src="{{list.default_image}}" width="150px" height="150px" style="margin-left:0"></li>
+                <li><a href="{{list.list_url}}"><img src="{{list.default_image}}" width="150px" height="150px" style="margin-left:0"></a></li>
                 {% endfor %}
             </ul>
             	
