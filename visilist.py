@@ -84,7 +84,7 @@ def remove_item(listid, item_id):
 @app.route('/list/<ObjectID:listid>', methods=['GET'])
 def get_list(listid):
     single_list = mongo.db.lists.find_one({'_id': listid})
-    
+
     return render_template('list.html', list=single_list)
     # return render_template('single_list.html', single_list=single_list)
 
@@ -94,6 +94,10 @@ def get_list(listid):
 def user_lists():
     user = session['user']
     lists = mongo.db.lists.find({'owner_email': user['email']})
+    for l in lists:
+        for item in l.items:
+            print item
+
     return render_template('entries.html', lists=lists)
 
 
