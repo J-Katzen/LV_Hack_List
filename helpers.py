@@ -11,9 +11,8 @@ def authorized(f):
     def wrapped(*args, **kwargs):
         if 'signed_in' not in session:
             return 'Not signed in!'
-        return a(*args, **kwargs)
+        return f(*args, **kwargs)
     return wrapped
-return wrapper
 
 
 class ObjectIDConverter(BaseConverter):
