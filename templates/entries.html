@@ -15,7 +15,7 @@
 		<h1>Name of Listie</h1>
         <ul id= "lists">
             {% for list in one_lists %}
-            <li><a href="{{list.list_url}}"><img src="{{list.default_image}}" width="150px" height="150px" style="margin-left:0"></a></li>
+            <li><a href="{{one_list.list_url}}"><img src="{{one_list.default_image}}" width="150px" height="150px" style="margin-left:0"></a></li>
             {% endfor %}
         </ul>
         
@@ -24,7 +24,7 @@
     <div id="options">
         <a id="newitem" href="#"><h2>New Item</h2></a>
         <h2>Add Collaborators</h2>
-        <a id="deletelistie" href="{{one_list.listurl}}/remove">Delete Listie</a>
+        <a id="deletelistie" href="{{one_list.listurl}}/remove"><h2>Delete Listie</h2></a>
         </div>
 {% endblock %}
 
