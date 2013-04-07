@@ -51,6 +51,7 @@ def make_list():
 @authorized()
 @app.route('/list/<ObjectID:listid>/remove')
 def rem_list(listid):
+    print listid
     success = mongo.db.lists.remove({'_id': listid})
     return success
 
