@@ -13,8 +13,8 @@
     
 		<header>
         <img src="{{ url_for('static', filename='images/logo.png') }}" />
-        
-        <input type="button" id="signout" name="signout" value="Sign Out" />
+        <form action="http://lit-ravine-8874.herokuapp.com/logout" method="get">
+            <input type="button" id="signout" name="signout" value="Sign Out" />
     	</header>
     
     	<aside id="profile">
@@ -46,9 +46,9 @@
 		</div>
         
         <div id="options">
-            <h2>New Listie</h2>
-            <h2>Edit a Listie</h2>
-            <h2>Delete a Listie</h2>
+            <a href="http://lit-ravine-8874.herokuapp.com/new_list"><h2>New Listie</h2></a>
+            <!--<h2>Edit a Listie</h2>
+            <h2>Delete a Listie</h2>-->
             </div>
             
         <footer>
