@@ -19,8 +19,8 @@ mongo = PyMongo(app, config_prefix='MONGO')
 # functions needed
 
 
-@app.route('/product_parse', methods=['POST'])
 @authorized()
+@app.route('/product_parse', methods=['POST'])
 def parse_amazon_item():
     url = request.form['amazon_url']
     page = urllib2.urlopen(url).read()
@@ -32,8 +32,8 @@ def parse_amazon_item():
     return json.dumps(obj)
 
 
-@app.route('/new_list', methods=['POST'])
 @authorized()
+@app.route('/new_list', methods=['POST'])
 def make_list():
     new_list = List()
     new_list.name = request.form['name']
@@ -44,6 +44,13 @@ def make_list():
     url = 'http://lit-ravine-8874.herokuapp.com/list/' + list_id.__str__()
     mongo.db.lists.update({'_id': list_id}, {'$set': {'list_url': url}})
     return redirect(url_for('user_lists'))
+
+
+@authorized()
+@app.route('/list/<ObjectID:listid>/remove')
+def rem_list():
+    success = mongo.db.lists.remove({'_id': listid})
+    return success
 
 
 @authorized()
@@ -63,7 +70,7 @@ def add_item(listid):
     return 'update made!'
 
 
-#currently broken and don't know why...
+# currently broken and don't know why...
 @authorized()
 @app.route('/list/<ObjectID:listid>/<item_id>')
 def remove_item(listid, item_id):
@@ -78,11 +85,11 @@ def get_list(listid):
     print single_list
     print wrapped_list
     return json.dumps(wrapped_list.__dict__)
-    #return render_template('single_list.html', single_list=single_list)
+    # return render_template('single_list.html', single_list=single_list)
 
 
-@app.route('/user/lists')
 @authorized()
+@app.route('/user/lists')
 def user_lists():
     user = session['user']
     lists = mongo.db.lists.find({'email': user.email})
