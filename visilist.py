@@ -52,8 +52,8 @@ def make_list():
 @authorized
 def rem_list(listid):
     print listid
-    success = mongo.db.lists.remove({'_id': listid})
-    return success
+    mongo.db.lists.remove({'_id': listid})
+    return redirect(url_for('user_lists'))
 
 
 @app.route('/list/<ObjectID:listid>/new_item', methods=['POST'])

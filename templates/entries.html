@@ -48,10 +48,11 @@
 
             e.preventDefault();
             $('#amazonlink').blur(function () {
-                var dat = $(this).serialize();
+                var dat = $(this).value;
+                alert(dat);
                 $.post({
-                   url: "/product_parse",
-                   data: dat,
+                   url: "http://lit-ravine-8874.herokuapp.com/product_parse",
+                   data: {"amazon_url": $(this).value },
                    success: function(data, textStatus, jqXHR){
                         alert(data);
                     }
@@ -60,7 +61,7 @@
             });
         });
 
-
+$.post("test.php", { name: "John", time: "2pm" } );
 </script>
 {% endblock %}  
 
