@@ -3,6 +3,7 @@ from flask.ext.pymongo import PyMongo
 from models import User, List, Item
 from helpers import authorized, ObjectIDConverter
 from bs4 import BeautifulSoup
+from base64 import b64encode
 import json
 import models
 import urllib2
@@ -40,6 +41,8 @@ def make_list():
     new_list.list_url = ''
     lists = mongo.db.lists
     list_id = lists.insert(new_list.__dict__)
+    url = 'http://lit-ravine-8874.herokuapp.com/list/' + list_id.__str__()
+    mongo.db.lists.update({'_id': list_id}, {'$set': {'list_url': url}})
     return redirect(url_for('user_lists'))
 
 
@@ -71,7 +74,10 @@ def remove_item(listid, item_id):
 @app.route('/list/<ObjectID:listid>', methods=['GET'])
 def get_list(listid):
     single_list = mongo.db.lists.find_one({'_id': listid})
-    return json.dumps(single_list)
+    wrapped_list = List(single_list)
+    print single_list
+    print wrapped_list
+    return json.dumps(wrapped_list)
     #return render_template('single_list.html', single_list=single_list)
 
 
