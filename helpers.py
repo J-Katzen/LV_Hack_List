@@ -18,7 +18,7 @@ def authorized(f):
     return wrapped
 
 
-def forced_parse(url):
+def parse_amz(url):
     url = request.form['amazon_url']
     page = urllib2.urlopen(url).read()
     soup = BeautifulSoup(page)
