@@ -76,7 +76,7 @@ def get_list(listid):
 def user_lists():
     user = session['user']
     lists = mongo.db.lists.find({'email': user.email})
-    return render_template('user_lists.html', lists=lists)
+    return render_template('entries.html', lists=lists)
 
 
 @app.route('/login', methods=['GET', 'POST'])
