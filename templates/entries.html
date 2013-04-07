@@ -49,7 +49,18 @@
 
         $('a#newitem').click(function(e){
             modal.open({content: text});
+
             e.preventDefault();
+            $('#amazonlink').blur(function () {
+                var dat = $(this).serialize();
+                $.post({
+                   url: "/product_parse",
+                   data: dat,
+                   success: function(data, textStatus, jqXHR){
+                        alert(data);
+                    }
+                    });
+                });
             });
         });
 
@@ -59,16 +70,6 @@
             });
         });
 
-        $('#amazonlink').blur(function () {
-            var dat = $(this).serialize();
-            $.post({
-               url: "/product_parse",
-               data: dat,
-               success: function(data, textStatus, jqXHR){
-                    alert(data);
-               }
-            });
-        });
 </script>
 {% endblock %}  
 
