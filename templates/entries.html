@@ -14,24 +14,17 @@
 	<div id="listies">
 		<h1>Name of Listie</h1>
         <ul id= "lists">
-        	<li>listie</li>
-            <li>listie</li>
-            <li>listie</li>
-            <li>listie</li>
-            <li>listie</li>
-            <li>listie</li>
-            <li>listie</li>
-            <li>listie</li>
-            <li>listie</li>
+            {% for list in one_lists %}
+            <li><a href="{{list.list_url}}"><img src="{{list.default_image}}" width="150px" height="150px" style="margin-left:0"></a></li>
+            {% endfor %}
         </ul>
         
 	</div>
     
     <div id="options">
-        <h2>New Listie</h2>
-        <h2>Edit a Listie</h2>
-        <h2>Delete a Listie</h2>
-        </div>
+        <h2>New Entry</h2>
+        <h2>Add Collaborators</h2>
+    </div>
 {% endblock %}
 
 {% block javascript %}
