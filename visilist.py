@@ -96,14 +96,6 @@ def get_list(listid):
 def user_lists():
     user = session['user']
     lists = mongo.db.lists.find({'owner_email': user['email']})
-    for l in lists:
-        print l
-
-        if len(l.items) > 0:
-            pass
-        #    for item, value in l.items.iteritems():
-        #        print item, value
-
     return render_template('profile.html', lists=lists)
 
 
@@ -138,9 +130,10 @@ def register_user():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
+        name = request.form['fullname']
         if mongo.db.users.find_one({'email': email}) == None:
             users = mongo.db.users
-            user_id = users.insert({'email': email, 'password': password})
+            user_id = users.insert({'email': email, 'password': password, 'fullname': name})
             return 'success!'
         else:
             return 'fail!'
