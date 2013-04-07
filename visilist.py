@@ -139,6 +139,11 @@ def register_user():
 def hello_world():
     return render_template('index.html')
 
+
+@app.route('/testforms')
+def test_forms():
+    return render_template('testForms.html')
+
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
