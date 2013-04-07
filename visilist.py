@@ -5,7 +5,6 @@ from helpers import authorized, ObjectIDConverter
 from bs4 import BeautifulSoup
 from base64 import b64encode
 import json
-import models
 import urllib2
 
 app = Flask(__name__)
@@ -77,15 +76,7 @@ def add_item(listid):
     return redirect(url_for('get_list', listid=listid))
 
 
-def forced_parse(url):
-    url = request.form['amazon_url']
-    page = urllib2.urlopen(url).read()
-    soup = BeautifulSoup(page)
-    image_url = soup.select("#main-image")[0]['src']
-    name = soup.select("#btAsinTitle")[0].text
-    descript = soup.select(".productDescriptionWrapper")[0].text[:160] + "..."
-    obj = {'name': name, 'image_url': image_url, 'description': descript}
-    return obj
+
 
 
 # currently broken and don't know why...
