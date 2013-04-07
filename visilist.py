@@ -72,7 +72,7 @@ def add_item(listid):
     item_count += 1
     mongo.db.lists.update({'_id': listid}, {'$push': {'items': new_item.__dict__}})
     mongo.db.lists.update({'_id': listid}, {'$set': {'item_count': item_count}})
-    return 'update made!'
+    return redirect(url_for('get_list'))
 
 
 # currently broken and don't know why...
@@ -87,7 +87,7 @@ def remove_item(listid, item_id):
 def get_list(listid):
     listy = mongo.db.lists.find_one({'_id': listid})
     single_list = List(listy)
-    return render_template('entries.html', one_list=single_list, items=single_list.items)
+    return render_template('entries.html', one_list=single_list.list_url, items=single_list.items)
     # return render_template('single_list.html', single_list=single_list)
 
 
