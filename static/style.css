@@ -144,7 +144,17 @@ aside{
 	
 #options{
 	width:250px;
-}
+	}
+
+#options a{
+	transition: color 1s;
+	-webkit-transition: color 1s;
+	-moz-transition: color 1s;
+	}
+
+#options a:hover{
+	color:#f2594b;
+	}
 
 .listies{
 	margin-top:20px;

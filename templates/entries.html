@@ -15,7 +15,7 @@
 		<h1>{{one_list.name}}</h1>
         <ul id= "lists">
             {% for item in items %}
-            <li><a href="{{item.link}}"><img src="{{item.image_url}}" width="150px" height="150px" style="margin-left:0"></a></li>
+            <li><a href="{{item.amazon_link}}"><img src="{{item.image_url}}" width="150px" height="150px" style="margin-left:0"></a></li>
             {% endfor %}
         </ul>
         
@@ -36,10 +36,9 @@
     // Wait until the DOM has loaded before querying the document
     $(document).ready(function(){
         var text = '<form action="{{one_list.list_url}}/new_item" name="addItem" method="POST">\
-                    Add Item<br>\
-                    Amazon Link: <input type="text" name="link" id="amazonlink"><br>\
+                    <h3>Add Item</h3><br>\
+                    Amazon Link: <input type="text" name="link" id="link"><br>\
                     Name: <input type="text" name="name"><br>\
-                    Image URL: <input type="text" name="type"><br>\
                     Notes: <input type="text" name="notes"><br>\
                     <div id="submitList"><input type="submit" value="Submit"></div>\
                     </form>';
