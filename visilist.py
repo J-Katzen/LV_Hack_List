@@ -67,6 +67,8 @@ def add_item(listid):
     s_list = mongo.db.lists.find_one({'_id': listid})
     item_count = s_list['item_count']
     new_item.id = item_count
+    if item_count == 0:
+        mongo.db.lists.update({'_id': listid}, {'$set': {'default_image': new_item.image_url}})
     item_count += 1
     mongo.db.lists.update({'_id': listid}, {'$push': {'items': new_item.__dict__}})
     mongo.db.lists.update({'_id': listid}, {'$set': {'item_count': item_count}})
@@ -85,7 +87,7 @@ def remove_item(listid, item_id):
 def get_list(listid):
     single_list = mongo.db.lists.find_one({'_id': listid})
 
-    return render_template('list.html', list=single_list)
+    return render_template('entries.html', list=single_list)
     # return render_template('single_list.html', single_list=single_list)
 
 
@@ -96,11 +98,12 @@ def user_lists():
     lists = mongo.db.lists.find({'owner_email': user['email']})
     for l in lists:
         print l
-        #if len(l.items) > 0:
+
+        if len(l.items) > 0:
         #    for item, value in l.items.iteritems():
         #        print item, value
 
-    return render_template('entries.html', lists=lists)
+    return render_template('profile.html', lists=lists)
 
 
 @app.route('/login', methods=['GET', 'POST'])

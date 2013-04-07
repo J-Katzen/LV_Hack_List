@@ -11,6 +11,7 @@ class List:
             self.list_url = ''
             self.item_count = 0
             self.owner_email = owner_email
+            self.default_image = ''
         else:
             self.name = mongobj['name']
             self.type = mongobj['type']
@@ -19,3 +20,4 @@ class List:
             self.list_url = mongobj['list_url']
             self.item_count = mongobj['item_count']
             self.owner_email = mongobj['owner_email']
+            self.default_image = mongobj['default_image']
