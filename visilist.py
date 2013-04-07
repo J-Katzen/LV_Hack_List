@@ -110,7 +110,7 @@ def login():
         else:
             session['signed_in'] = True
             session['user'] = user
-            return 'WHOA!'
+            return redirect(url_for('hello_world'))
     # the code below this is executed if the request method
     # was GET or the credentials were invalid
     return '...!'
@@ -119,7 +119,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('signed_in', None)
-    return redirect(url_for('login'))
+    return redirect(url_for('hello_world'))
 
 
 @app.route('/register', methods=['POST'])
@@ -137,7 +137,7 @@ def register_user():
 
 @app.route('/')
 def hello_world():
-    return render_template('testForms.html')
+    return render_template('index.html')
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
