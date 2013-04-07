@@ -355,7 +355,6 @@ form#login {
 }
 #modal {
     position:absolute;
-    background:url(tint20.png) 0 0 repeat;
     background:rgba(0,0,0,0.2);
     border-radius:14px;
     padding:8px;
@@ -368,7 +367,7 @@ form#login {
 }
 #close {
     position:absolute;
-    background:url(close.png) 0 0 no-repeat;
+    background:url(images/close.png) 0 0 no-repeat;
     width:24px;
     height:27px;
     display:block;
