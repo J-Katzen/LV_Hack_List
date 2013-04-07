@@ -38,7 +38,7 @@
 
         var text = '<form action="http://lit-ravine-8874.herokuapp.com/list/NTE2MGZhOTFhNDZmMDAwMDA3OTkzY2E2/new_item" name="addList" method="POST">\
                     Add Item:<br>\
-                    Amazon Link: <input type="text" name="link"><br>\
+                    Amazon Link: <input type="text" name="link" id="amazonlink"><br>\
                     Name: <input type="text" name="name"><br>\
                     Image URL: <input type="text" name="type"><br>\
                     Notes: <input type="text" name="notes"><br>\
@@ -48,6 +48,17 @@
         $('a#newitem').click(function(e){
             modal.open({content: text});
             e.preventDefault();
+            });
+        });
+
+        $('#amazonlink').blur(function () {
+            var dat = $(this).serialize();
+            $.post({
+               url: "/product_parse",
+               data: dat,
+               success: function(data, textStatus, jqXHR){
+                    alert(data);
+               }
             });
         });
 </script>
