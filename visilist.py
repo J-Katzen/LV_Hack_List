@@ -93,7 +93,7 @@ def get_list(listid):
 @app.route('/user/lists')
 def user_lists():
     user = session['user']
-    lists = mongo.db.lists.find({'owner': user['email']})
+    lists = mongo.db.lists.find({'owner_email': user['email']})
     return render_template('user_lists.html', lists=lists)
 
 
