@@ -2,17 +2,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Entries</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<title>My Profile</title>
+<link href="style.css" rel="stylesheet" type="text/css">
 <meta name="viewport" content="width=device-width"> 
 
 </head>
 
 <body>
+
 <div id="container">
     
 		<header>
-        <img src="{{ url_for('static', filename='images/logo.png') }}" />
+        <img src="images/logo.png" />
         
         <input type="button" id="signout" name="signout" value="Sign Out" />
     	</header>
@@ -27,22 +28,19 @@
     	</aside>
     
     	<div id="listies">
-    		<h1>Name of Listie</h1>
+    		<h1>My Listies</h1>
             <ul id= "lists">
-                {% for list in lists %}
-                {{list.items}}
-                {% endfor %}
-            	<!--<li>entrie</li>
-                <li>entrie</li>
-                <li>entrie</li>
-                <li>entrie</li>
-                <li>entrie</li>
-                <li>entrie</li>
-                <li>entrie</li>
-                <li>entrie</li>
-                <li>entrie</li>-->
+            	<li>listie</li>
+                <li>listie</li>
+                <li>listie</li>
+                <li>listie</li>
+                <li>listie</li>
+                <li>listie</li>
+                <li>listie</li>
+                <li>listie</li>
+                <li>listie</li>
             </ul>
-            	
+            
 		</div>
         
         <div id="options">
@@ -50,10 +48,11 @@
             <h2>Edit a Listie</h2>
             <h2>Delete a Listie</h2>
             </div>
-            
+        
         <footer>
         </footer>
         
 	</div>
+    
 </body>
 </html>
