@@ -322,6 +322,10 @@ form#login {
 	margin-top:20px;
 	float:right;
 	}
+
+#about img{
+	margin:auto;
+}
 	
 #options{
 	clear:left;
