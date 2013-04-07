@@ -60,6 +60,7 @@ def rem_list(listid):
 def add_item(listid):
     new_item = Item()
     dit = forced_parse(request.form['link'])
+    print dit + "?!?!??!"
     new_item.name = request.form['name']
     new_item.image_url = dit['image_url']
     new_item.amazon_link = request.form['link']
