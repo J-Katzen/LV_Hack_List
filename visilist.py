@@ -126,7 +126,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('signed_in', None)
-    return redirect(url_for('hello_world'))
+    return redirect(url_for('user_lists'))
 
 
 @app.route('/register', methods=['POST'])
