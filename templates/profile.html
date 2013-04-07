@@ -23,7 +23,7 @@
 		</div>
         
         <div id="options">
-            <a id="howdy" href="#"><h2>New Listie</h2></a>
+            <a id="newlistie" href="#"><h2>New Listie</h2></a>
             <!--<h2>Edit a Listie</h2>
             <h2>Delete a Listie</h2>-->
             </div>
@@ -32,6 +32,18 @@
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
         <script src="{{ url_for('static', filename='modal.js') }}" type="text/javascript"></script>
+        <script type="text/javascript">
+                    // Wait until the DOM has loaded before querying the document
+            $(document).ready(function(){
+
+                var text = '<form action="http://lit-ravine-8874.herokuapp.com/new_list" name="addList" method="POST">Add List: <br>Name: <input type="text"\ name="name"><br>Type: <input type="text" name="type"><br><input type="submit" value="Submit"></form>';
+
+                $('a#newlistie').click(function(e){
+                    modal.open({content: text});
+                    e.preventDefault();
+                });
+            });
+        </script>
         {% endblock %}    
 
 

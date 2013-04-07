@@ -65,13 +65,4 @@
                 return method;
             }());
 
-            // Wait until the DOM has loaded before querying the document
-            $(document).ready(function(){
 
-                var text = '<form action="http://lit-ravine-8874.herokuapp.com/new_list" name="addList" method="POST">Add List: <br>Name: <input type="text" name="name"><br>Type: <input type="text" name="type"><br><input type="submit" value="Submit"></form>';
-
-                $('a#howdy').click(function(e){
-                    modal.open({content: text});
-                    e.preventDefault();
-                });
-            });
