@@ -85,7 +85,8 @@ def remove_item(listid, item_id):
 
 @app.route('/list/<ObjectID:listid>', methods=['GET'])
 def get_list(listid):
-    single_list = mongo.db.lists.find_one({'_id': listid})
+    listy = mongo.db.lists.find_one({'_id': listid})
+    single_list = List(listy)
     return render_template('entries.html', one_list=single_list, items=single_list.items)
     # return render_template('single_list.html', single_list=single_list)
 
