@@ -3,7 +3,8 @@
 <!--tab script-->
 
 <!--end tab script-->
-  {% block header %} <img src="{{ url_for('static', filename='images/logo.png') }}" />
+  {% block header %} 
+   <img src="{{ url_for('static', filename='images/logo.png') }}" />
     <a href="http://lit-ravine-8874.herokuapp.com/logout"><input type="button" id="signout" name="signout" value="SIGN OUT" /></a>
   {% endblock %}
   {% block content %}
