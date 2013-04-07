@@ -39,6 +39,7 @@ def make_list():
     new_list.name = request.form['name']
     new_list.type = request.form['type']
     new_list.list_url = ''
+    new_list.owner_email = session['user']['email']
     lists = mongo.db.lists
     list_id = lists.insert(new_list.__dict__)
     url = 'http://lit-ravine-8874.herokuapp.com/list/' + list_id.__str__()
@@ -92,7 +93,7 @@ def get_list(listid):
 @app.route('/user/lists')
 def user_lists():
     user = session['user']
-    lists = mongo.db.lists.find({'email': user.email})
+    lists = mongo.db.lists.find({'owner': user['email']})
     return render_template('user_lists.html', lists=lists)
 
 
