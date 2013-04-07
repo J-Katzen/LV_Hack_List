@@ -121,7 +121,7 @@ def login():
         else:
             session['signed_in'] = True
             session['user'] = user
-            return redirect(url_for('hello_world'))
+            return redirect(url_for('user_lists'))
     # the code below this is executed if the request method
     # was GET or the credentials were invalid
     return '...!'
