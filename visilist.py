@@ -3,79 +3,96 @@ from flask.ext.pymongo import PyMongo
 from models import User, List, Item
 from helpers import authorized, ObjectIDConverter
 from bs4 import BeautifulSoup
+from base64 import b64encode
 import json
 import models
 import urllib2
 
 app = Flask(__name__)
 app.url_map.converters['ObjectID'] = ObjectIDConverter
-
+app.secret_key = '\x93Y\xc3 o^$\x03\xfa\x9c\xbe\xa9x\x9dR\x94\xcd\xd9k\x9e\x9e#\x94\xca'
 # mongodb connections
+app.debug = True
 app.config[
     'MONGO_URI'] = 'mongodb://heroku_app14582889:s69s9ag2v3qrbe0grhvfoem3mg@ds037387.mongolab.com:37387/heroku_app14582889'
 mongo = PyMongo(app, config_prefix='MONGO')
 # functions needed
 
 
-@app.route('/product_parse', methods=['POST'])
 @authorized()
+@app.route('/product_parse', methods=['POST'])
 def parse_amazon_item():
     url = request.form['amazon_url']
     page = urllib2.urlopen(url).read()
     soup = BeautifulSoup(page)
-    image_url = soup.find(id="main-image")['src']
-    name = soup.find(id="btAsinTitle").text
-    descript = soup.find(id="postBodyPS").p.text[:160] + "..."
+    image_url = soup.select("#main-image")[0]['src']
+    name = soup.select("#btAsinTitle")[0].text
+    descript = soup.select(".productDescriptionWrapper")[0].text[:160] + "..."
     obj = {'name': name, 'image_url': image_url, 'desription': descript}
     return json.dumps(obj)
 
-@app.route('/new_list', methods=['POST'])
+
 @authorized()
+@app.route('/new_list', methods=['POST'])
 def make_list():
     new_list = List()
     new_list.name = request.form['name']
     new_list.type = request.form['type']
     new_list.list_url = ''
+    new_list.owner_email = session['user']['email']
     lists = mongo.db.lists
     list_id = lists.insert(new_list.__dict__)
+    encoded = b64encode(list_id.__str__())
+    url = 'http://lit-ravine-8874.herokuapp.com/list/' + encoded
+    mongo.db.lists.update({'_id': list_id}, {'$set': {'list_url': url}})
     return redirect(url_for('user_lists'))
 
 
-@app.route('/list/<ObjectID:listid>/new_item', methods=['POST'])
 @authorized()
+@app.route('/list/<ObjectID:listid>/remove')
+def rem_list(listid):
+    print listid
+    success = mongo.db.lists.remove({'_id': listid})
+    return success
+
+
+@authorized()
+@app.route('/list/<ObjectID:listid>/new_item', methods=['POST'])
 def add_item(listid):
     new_item = Item()
     new_item.name = request.form['name']
     new_item.image_url = request.form['type']
     new_item.link = request.form['link']
     new_item.note = request.form['notes']
-    s_list = mongo.db.users.find({'_id': listid})
-    item_count = s_list.item_count
+    s_list = mongo.db.lists.find_one({'_id': listid})
+    item_count = s_list['item_count']
     new_item.id = item_count
     item_count += 1
-    mongo.db.users.update({'_id': listid}, {'$push': {'items': new_item}})
-    mongo.db.users.update({'_id': listid}, {'$set': {'item_count': item_count}})
-    return redirect('/list/' + listid)
+    mongo.db.lists.update({'_id': listid}, {'$push': {'items': new_item.__dict__}})
+    mongo.db.lists.update({'_id': listid}, {'$set': {'item_count': item_count}})
+    return 'update made!'
 
 
+# currently broken and don't know why...
 @authorized()
 @app.route('/list/<ObjectID:listid>/<item_id>')
 def remove_item(listid, item_id):
-    s_list = mongo.db.users.update({'_id': listid},
-                                   {'$pull': {'items': item_id}})
+    mongo.db.lists.update({'_id': listid}, {'$pull': {'items': {'id': item_id}}})
+    return 'removal done!'
 
 
 @app.route('/list/<ObjectID:listid>', methods=['GET'])
 def get_list(listid):
-    single_list = mongo.db.users.find_one({'_id': listid})
-    return render_template('single_list.html', single_list=single_list)
+    single_list = mongo.db.lists.find_one({'_id': listid})
+    return render_template('list.html', list=single_list)
+    # return render_template('single_list.html', single_list=single_list)
 
 
-@app.route('/user/lists')
 @authorized()
+@app.route('/user/lists')
 def user_lists():
     user = session['user']
-    lists = mongo.db.lists.find({'email': user.email})
+    lists = mongo.db.lists.find({'owner_email': user['email']})
     return render_template('entries.html', lists=lists)
 
 
@@ -83,17 +100,20 @@ def user_lists():
 def login():
     error = None
     if request.method == 'POST':
-        user = mongo.db.users.find_one({'email': request.form['email'],
-                                        'password': request.form['password']})
+        email = request.form['email']
+        password = request.form['password']
+        user = mongo.db.users.find_one({'email': email,
+                                        'password': password})
         if user == None:
             error = 'Invalid username/password'
-            return error
+            session.pop('signed_in', None)
         else:
             session['signed_in'] = True
             session['user'] = user
+            return 'WHOA!'
     # the code below this is executed if the request method
     # was GET or the credentials were invalid
-    return 'Success!'
+    return '...!'
 
 
 @app.route('/logout')
@@ -117,7 +137,8 @@ def register_user():
 
 @app.route('/')
 def hello_world():
-    return 'hello world!'
+    return render_template('testForms.html')
 
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
