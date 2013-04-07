@@ -96,7 +96,8 @@ def get_list(listid):
 def user_lists():
     user = session['user']
     lists = mongo.db.lists.find({'owner_email': user['email']})
-    return render_template('profile.html', lists=lists, username=session['user'])
+    clists = mongo.db.lists.find({'collab_email': user['email']})
+    return render_template('profile.html', lists=lists, username=session['user'], collab_lists=clists)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -137,6 +138,14 @@ def register_user():
             return redirect(url_for('hello_world'))
         else:
             return redirect(url_for('hello_world'))
+
+
+@app.route('/list/<ObjectID:listid>/collaborate', methods=['POST'])
+def add_collaborator(listid):
+    if request.method == 'POST':
+        email = request.form['email']
+        mongo.db.lists.update({'_id': list_id}, {'$push': {'collab_emails': email}})
+        return redirect(url_for('user_lists'))
 
 
 @app.route('/')
