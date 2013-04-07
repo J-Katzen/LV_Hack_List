@@ -82,10 +82,7 @@ def remove_item(listid, item_id):
 @app.route('/list/<ObjectID:listid>', methods=['GET'])
 def get_list(listid):
     single_list = mongo.db.lists.find_one({'_id': listid})
-    wrapped_list = List(single_list)
-    print single_list
-    print wrapped_list
-    return json.dumps(wrapped_list.__dict__)
+    return render_template('list.html', list=single_list)
     # return render_template('single_list.html', single_list=single_list)
 
 
