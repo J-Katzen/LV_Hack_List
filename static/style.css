@@ -147,7 +147,7 @@ aside{
 	}
 
 #options a{
-  color:#purple ;
+  color: purple ;
   -o-transition:1s;
   -ms-transition:1s;
   -moz-transition:1s;
@@ -330,7 +330,7 @@ form#login {
 	}
 #options a{
 	text-decoration: none;
-  color:#purple ;
+  color: purple ;
   -o-transition:1s;
   -ms-transition:1s;
   -moz-transition:1s;
@@ -366,7 +366,7 @@ form#login {
 		}
 	#options a{
 		text-decoration: none;
-		  color:#purple ;
+		  color: purple ;
 		  -o-transition:1s;
 		  -ms-transition:1s;
 		  -moz-transition:1s;
