@@ -2,45 +2,35 @@
 {% block title %}Entries{% endblock %}
 <meta name="viewport" content="width=device-width"> 
 
-</head>
-
-<body>
-<div id="container">
+    {% block content %}
+	<aside id="profile">
     
-		{% block header %}
-        <img src="{{ url_for('static', filename='images/logo.png') }}" />
+    	<!--Profile Picture goes here-->
+    	<div id="blurb">
+    	<h2>Name Goes Here</h2>
+        <p>Blurb about the user</p>
+        </div>
+	</aside>
 
-        <input type="button" id="signout" name="signout" value="Sign Out" />
-        {% endblock %}
-        {% block content %}
-    	<aside id="profile">
-        
-        	<!--Profile Picture goes here-->
-        	<div id="blurb">
-        	<h2>Name Goes Here</h2>
-            <p>Blurb about the user</p>
-            </div>
-    	</aside>
+	<div id="listies">
+		<h1>My Listies</h1>
+        <ul id= "lists">
+            {% for list in lists %}
+            <li><a href="{{list.list_url}}"><img src="{{list.default_image}}" width="150px" height="150px" style="margin-left:0"></a></li>
+            {% endfor %}
+        </ul>
+        	
+	</div>
     
-    	<div id="listies">
-    		<h1>My Listies</h1>
-            <ul id= "lists">
-                {% for list in lists %}
-                <li><a href="{{list.list_url}}"><img src="{{list.default_image}}" width="150px" height="150px" style="margin-left:0"></a></li>
-                {% endfor %}
-            </ul>
-            	
-		</div>
-        
-        <div id="options">
-            <a id="howdy" href="#"><h2>New Listie</h2></a>
-            <!--<h2>Edit a Listie</h2>
-            <h2>Delete a Listie</h2>-->
-            </div>
-        {% endblock %}
-        {% block javascript %}
-        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-        <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
-        <script src="{{ url_for('static', filename='modal.js') }}" type="text/javascript"></script>
-        {% endblock %}    
+    <div id="options">
+        <a id="howdy" href="#"><h2>New Listie</h2></a>
+        <!--<h2>Edit a Listie</h2>
+        <h2>Delete a Listie</h2>-->
+        </div>
+    {% endblock %}
+    {% block javascript %}
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+    <script src="{{ url_for('static', filename='modal.js') }}" type="text/javascript"></script>
+    {% endblock %}    
 
