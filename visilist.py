@@ -23,6 +23,7 @@ mongo = PyMongo(app, config_prefix='MONGO')
 @authorized
 def parse_amazon_item():
     url = request.form['amazon_url']
+    print url
     page = urllib2.urlopen(url).read()
     soup = BeautifulSoup(page)
     image_url = soup.select("#main-image")[0]['src']
@@ -63,6 +64,7 @@ def add_item(listid):
     new_item.name = request.form['name']
     new_item.image_url = request.form['type']
     new_item.link = request.form['link']
+    new_item.amazon_link = request.form['link']
     new_item.note = request.form['notes']
     s_list = mongo.db.lists.find_one({'_id': listid})
     item_count = s_list['item_count']
