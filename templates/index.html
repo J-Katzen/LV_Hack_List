@@ -14,7 +14,7 @@
 <body>
 <div id="container">
   <header> <img src="{{ url_for('static', filename='images/logo.png') }}" />
-    <input type="button" id="signout" name="signout" value="SIGN OUT" />
+    <a href="http://lit-ravine-8874.herokuapp.com/logout"><input type="button" id="signout" name="signout" value="SIGN OUT" /></a>
   </header>
   <aside>
     <div class='tabbed_content'>
@@ -43,7 +43,7 @@
                 <input id="email" type="text" name="email"/>
                 <label for="cpassword" class="contentlabel">Create a Password</label>
                 <input id="cpassword" type="text" name="password"/>
-                <input type="button" id="submitb" name="submitb" value="GET STARTED" />
+                <input type="submit" id="submitb" name="submitb" value="GET STARTED" />
               </form>
             </li>
           </ul>
