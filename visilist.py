@@ -33,7 +33,7 @@ def parse_amazon_item():
 
 
 @app.route('/new_list', methods=['POST'])
-@authorized()
+@authorized
 def make_list():
     new_list = List()
     new_list.name = request.form['name']
