@@ -147,9 +147,13 @@ aside{
 	}
 
 #options a{
-	transition: color 1s;
-	-webkit-transition: color 1s;
-	-moz-transition: color 1s;
+  color:#purple ;
+  -o-transition:1s;
+  -ms-transition:1s;
+  -moz-transition:1s;
+  -webkit-transition:1s;
+  transition:1s;
+  text-decoration:none;
 	}
 
 #options a:hover{
@@ -326,9 +330,13 @@ form#login {
 	}
 #options a{
 	text-decoration: none;
-	transition: color 1s;
-	-webkit-transition: color 1s;
-	-moz-transition: color 1s;
+  color:#purple ;
+  -o-transition:1s;
+  -ms-transition:1s;
+  -moz-transition:1s;
+  -webkit-transition:1s;
+  transition:1s;
+  text-decoration:none;
 }
 #options a:hover{
 	color:#f2594b;
@@ -358,9 +366,13 @@ form#login {
 		}
 	#options a{
 		text-decoration: none;
-		transition: color 1s;
-		-webkit-transition: color 1s;
-		-moz-transition: color 1s;
+		  color:#purple ;
+		  -o-transition:1s;
+		  -ms-transition:1s;
+		  -moz-transition:1s;
+		  -webkit-transition:1s;
+		  transition:1s;
+		  text-decoration:none;
 	}
 #options a:hover{
 	color:#f2594b;
